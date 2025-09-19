@@ -106,7 +106,7 @@ locals {
         "if ip link show eth1 &>/dev/null; then",
         "  # Add default route via private network with high metric",
         "  # Metric 20101 matches current DHCP-provided route for compatibility",
-        "  ip route add default via 10.0.0.1 dev eth1 metric 20101 2>/dev/null",
+        "  nmcli con mod eth1 +ipv4.routes \"0.0.0.0/0 10.0.0.1\">/dev/null",
         "  ",
         "  # Configure NetworkManager to ignore DHCP default route on private interface",
         "  if systemctl is-active --quiet NetworkManager; then",
